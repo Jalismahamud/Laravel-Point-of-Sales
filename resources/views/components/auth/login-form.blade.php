@@ -27,34 +27,27 @@
 
 <script>
 
-async function SubmitLogin() {
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
+  async function SubmitLogin() {
+            let email=document.getElementById('email').value;
+            let password=document.getElementById('password').value;
 
-
-    if (email.length === 0) {
-        errorToast("Email is required");
-    } else if (password.length === 0) {
-        errorToast("Password is required");
-    } else {
-        showLoader();
-        try {
-            let res = await axios.post("/user-login", { email: email, password: password });
-            console.log("Response:", res);
-
-            hideLoader();
-            if (res.status === 200 && res.data['status'] === 'success') {
-                window.location.href = "/dashboard";
-            } else {
-                errorToast(res.data['message']);
+            if(email.length===0){
+                errorToast("Email is required");
             }
-        } catch (error) {
-            hideLoader();
-            console.error("Error:", error);
-            errorToast("An error occurred. Please try again.");
-        }
+            else if(password.length===0){
+                errorToast("Password is required");
+            }
+            else{
+                showLoader();
+                let res=await axios.post("/user-login",{email:email, password:password});
+                hideLoader()
+                if(res.status===200 && res.data['status']==='success'){
+                    window.location.href="/dashboard";
+                }
+                else{
+                    errorToast(res.data['message']);
+                }
+            }
     }
-}
-
 
 </script>

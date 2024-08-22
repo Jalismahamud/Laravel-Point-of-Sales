@@ -37,17 +37,7 @@
             }
             else{
                 errorToast(res.data['message'])
-                else
             }
         }
     }
-</script>
-
-
-<script>
-
-
-
-
-    aasce]VerifyOtp
 </script>

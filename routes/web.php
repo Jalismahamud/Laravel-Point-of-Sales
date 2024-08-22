@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 
 
 
 
-// Web API Routes
+//User Web API Routes
 Route::post('/user-registration',[UserController::class,'UserRegistration']);
 Route::post('/user-login',[UserController::class,'UserLogin']);
 Route::post('/send-otp',[UserController::class,'SendOTPCode']);
@@ -22,7 +24,7 @@ Route::post('/user-update',[UserController::class,'UpdateProfile'])->middleware(
 Route::get('/logout',[UserController::class,'UserLogout']);
 
 // Page Routes
-// Route::get('/',[HomeController::class,'HomePage']);
+Route::get('/',[HomeController::class,'HomePage']);
 Route::get('/userLogin',[UserController::class,'LoginPage']);
 Route::get('/userRegistration',[UserController::class,'RegistrationPage']);
 Route::get('/sendOtp',[UserController::class,'SendOtpPage']);
@@ -31,3 +33,17 @@ Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middle
 Route::get('/dashboard',[DashboardController::class,'DashboardPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/userProfile',[UserController::class,'ProfilePage'])->middleware([TokenVerificationMiddleware::class]);
 
+
+//Category web Api routes
+Route::get('/list-category',[CategoryController::class,'CategoryList'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/create-category',[CategoryController::class,'CategoryCreate'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/update-category',[CategoryController::class,'CategoryUpdate'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/delete-category',[CategoryController::class,'CategoryDelete'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/category-by-id",[CategoryController::class,'CategoryByID'])->middleware([TokenVerificationMiddleware::class]);
+
+//Category Page Routes
+Route::get('/categoryPage',[CategoryController::class,'CategoryPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/CategoryList',[CategoryController::class,'CategoryList'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/CategoryCreate',[CategoryController::class,'CategoryCreate'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/CategoryUpdate',[CategoryController::class,'CategoryUpdate'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/CategoryDelete',[CategoryController::class,'CategoryDelete'])->middleware([TokenVerificationMiddleware::class]);
