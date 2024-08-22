@@ -25,7 +25,7 @@
             let res=await axios.post("/delete-category",{id:id})
             hideLoader();
             if(res.data===1){
-                successToast("Request completed")
+                successToast("Category Deleted Successfully")
                 await getList();
             }
             else{

@@ -18,6 +18,9 @@
                                 <label class="form-label mt-3">Customer Mobile *</label>
                                 <input type="text" class="form-control" id="customerMobileUpdate">
 
+                                <label class="form-label mt-3">Customer Address *</label>
+                                <input type="text" class="form-control" id="customerAddressUpdate">
+
                                 <input type="text" class="d-none" id="updateID">
                             </div>
                         </div>
@@ -45,6 +48,7 @@
         document.getElementById('customerNameUpdate').value=res.data['name'];
         document.getElementById('customerEmailUpdate').value=res.data['email'];
         document.getElementById('customerMobileUpdate').value=res.data['mobile'];
+        document.getElementById('customerAddressUpdate').value=res.data['address'];
     }
 
 
@@ -53,6 +57,7 @@
         let customerName = document.getElementById('customerNameUpdate').value;
         let customerEmail = document.getElementById('customerEmailUpdate').value;
         let customerMobile = document.getElementById('customerMobileUpdate').value;
+        let customerAddress = document.getElementById('customerAddressUpdate').value;
         let updateID = document.getElementById('updateID').value;
 
 
@@ -65,13 +70,17 @@
         else if(customerMobile.length===0){
             errorToast("Customer Mobile Required !")
         }
+        else if(customerAddress.length===0){
+            errorToast("Customer Address Required !")
+        }
         else {
 
             document.getElementById('update-modal-close').click();
 
             showLoader();
 
-            let res = await axios.post("/update-customer",{name:customerName,email:customerEmail,mobile:customerMobile,id:updateID})
+            let res = await axios.post("/update-customer",{name:customerName,email:customerEmail,
+                mobile:customerMobile,address:customerAddress,id:updateID})
 
             hideLoader();
 

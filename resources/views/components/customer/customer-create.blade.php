@@ -15,6 +15,8 @@
                                 <input type="text" class="form-control" id="customerEmail">
                                 <label class="form-label">Customer Mobile *</label>
                                 <input type="text" class="form-control" id="customerMobile">
+                                <label class="form-label">Customer Address *</label>
+                                <input type="text" class="form-control" id="customerAddress">
                             </div>
                         </div>
                     </div>
@@ -32,40 +34,45 @@
 <script>
 
     async function Save() {
-
         let customerName = document.getElementById('customerName').value;
         let customerEmail = document.getElementById('customerEmail').value;
         let customerMobile = document.getElementById('customerMobile').value;
+        let customerAddress = document.getElementById('customerAddress').value;
 
         if (customerName.length === 0) {
-            errorToast("Customer Name Required !")
-        }
-        else if(customerEmail.length===0){
-            errorToast("Customer Email Required !")
-        }
-        else if(customerMobile.length===0){
-            errorToast("Customer Mobile Required !")
-        }
-        else {
-
-            document.getElementById('modal-close').click();
-
+            errorToast("Customer Name Required!");
+        } else if (customerEmail.length === 0) {
+            errorToast("Customer Email Required!");
+        } else if (customerMobile.length === 0) {
+            errorToast("Customer Mobile Required!");
+        } else if (customerAddress.length === 0) {
+            errorToast("Customer Address Required!");
+        } else {
             showLoader();
-            let res = await axios.post("/create-customer",{name:customerName,email:customerEmail,mobile:customerMobile})
-            hideLoader();
+            try {
+                let res = await axios.post("/create-customer", {
+                    name: customerName,
+                    email: customerEmail,
+                    mobile: customerMobile,
+                    address: customerAddress
+                });
 
-            if(res.status===201){
+                hideLoader();
 
-                successToast('Request completed');
-
-                document.getElementById("save-form").reset();
-
-                await getList();
-            }
-            else{
-                errorToast("Request fail !")
+                if (res.status === 201) {
+                    successToast('Customer created successfully!');
+                    document.getElementById("save-form").reset();
+                    document.getElementById('modal-close').click(); // Close modal after success
+                    await getList();
+                } else {
+                    errorToast("Request failed!");
+                }
+            } catch (error) {
+                hideLoader();
+                errorToast("An error occurred! Please try again.");
             }
         }
     }
+
 
 </script>

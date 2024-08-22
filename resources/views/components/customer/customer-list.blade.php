@@ -18,6 +18,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
+                    <th>Address</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -52,6 +53,7 @@ async function getList() {
                     <td>${item['name']}</td>
                     <td>${item['email']}</td>
                     <td>${item['mobile']}</td>
+                    <td>${item['address']}</td>
                     <td>
                         <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
                         <button data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
