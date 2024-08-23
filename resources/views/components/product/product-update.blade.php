@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update Product Info</h5>
             </div>
             <div class="modal-body">
                 <form id="update-form">
@@ -138,7 +138,7 @@
                 await getList();
             }
             else{
-                errorToast("Request fail !")
+                errorToast("Request fail !!")
             }
         }
     }
