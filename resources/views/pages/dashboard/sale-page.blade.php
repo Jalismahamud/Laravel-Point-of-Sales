@@ -274,7 +274,7 @@
 
             new DataTable('#customerTable',{
                 order:[[0,'desc']],
-                scrollCollapse: false,
+                scrollCollapse: true,
                 info: false,
                 lengthChange: false
             });
@@ -307,7 +307,7 @@
 
             new DataTable('#productTable',{
                 order:[[0,'desc']],
-                scrollCollapse: false,
+                scrollCollapse: true,
                 info: false,
                 lengthChange: false
             });
