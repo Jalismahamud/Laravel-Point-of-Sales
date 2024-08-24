@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
@@ -83,3 +84,6 @@ Route::post("/invoice-delete",[InvoiceController::class,'invoiceDelete'])->middl
 
 //Dashboard Summury Route
 Route::get('/summary',[DashboardController::class,'Summary'])->middleware([TokenVerificationMiddleware::class]);
+//Report page Route
+Route::get('/reportPage',[ReportController::class,'ReportPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/sales-report/{FormDate}/{ToDate}',[ReportController::class,'SalesReport'])->middleware([TokenVerificationMiddleware::class]);
